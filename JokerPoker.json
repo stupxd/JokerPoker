@@ -1,0 +1,16 @@
+{
+	"id": "JokerPoker",
+	"name": "JokerPoker",
+	"display_name": "JokerPoker",
+	"author": ["stupxd"],
+	"description": "Add a challenge in which you get random set of jokers every round",
+	"prefix": "jopo",
+	"main_file": "main.lua",
+	"priority": 1,
+	"badge_colour": "#f5e27a",
+	"badge_text_colour": "#ffffff",
+	"version": "1",
+	"dependencies": [
+		"Steamodded (>=1.0.0~BETA-0827c)"
+	]
+}
