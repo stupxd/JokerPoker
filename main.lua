@@ -32,10 +32,11 @@ local function joker_poker_jokers(run_start)
     local all_legendary = pseudorandom("joker_poker_all_legendary") < 0.01
 
     G.E_MANAGER:add_event(Event {blocking = blocking, trigger = 'before', delay = 0.4, func = function()
-        local card_limit = G.jokers.config.card_limit or G.jokers.config.card_limits.card_limit
+        local card_limit = G.jokers.config.card_limit
 
-        for i = 1,  - negatives do
+        for i = 1, card_limit - negatives do
             local legendary = all_legendary or pseudorandom("joker_poker_legendary") < 0.01
+
             local card = SMODS.create_card {
                 key_append = "joker_poker",
                 set = "Joker", 
