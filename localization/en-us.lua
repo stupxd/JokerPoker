@@ -5,7 +5,7 @@ return {
         },
         v_text = {
             ch_c_jopo_joker_poker={
-                "Start every round with {C:attention}random{} set of Jokers",
+                "Start every round with a {C:attention}random{} set of Jokers",
             },
         },
     }
