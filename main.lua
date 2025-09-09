@@ -73,7 +73,6 @@ function Game:start_run(args)
     end
 
     if not args.challenge or args.challenge.id ~= "c_jopo_joker_poker" then
-        debugplus.log(args.challenge)
         return
     end
 
