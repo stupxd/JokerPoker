@@ -7,6 +7,15 @@ SMODS.Challenge {
         },
         modifiers = {}
     },
+    restrictions = {
+        banned_cards = {
+        },
+        banned_tags = {
+        },
+        banned_other = {
+            {id = 'bl_final_leaf', type = 'blind'},
+        }
+    },
 }
 
 
