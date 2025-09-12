@@ -75,6 +75,10 @@ function Game:start_run(args)
         return
     end
 
+    if not args.challenge or args.challenge.id ~= "c_jopo_joker_poker" then
+        return
+    end
+
     joker_poker_jokers(true)
 end
 
@@ -83,6 +87,10 @@ local round_end = G.FUNCS.cash_out
 
 G.FUNCS.cash_out = function(e)
     round_end(e)
+
+    if G.GAME.challenge ~= "c_jopo_joker_poker" then
+        return
+    end
 
     joker_poker_jokers(false)
 end
