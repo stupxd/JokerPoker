@@ -18,13 +18,31 @@ SMODS.Challenge {
     },
 }
 
+local current_mod = SMODS.current_mod
+
+current_mod.config_tab = function()
+    return {
+        n = G.UIT.ROOT,
+        config = { r = 0.1, minw = 5,  minh = 3, align = "cm", padding = 0.2, colour = G.C.BLACK },
+        nodes = {
+            {
+                n = G.UIT.R,
+                config = { padding = 0.01, align = "cr" },
+                nodes = {
+                    create_toggle {
+                        label = localize('jopo_keep_negatives'),
+                        ref_table = current_mod.config,
+                        ref_value = 'keep_negatives'
+                    }
+                }
+            },
+        }
+    }
+end
 
 --- Remove all current jokers, fill up joker slots with random jokers
 --- @param run_start any
 local function joker_poker_jokers(run_start)
-    if not args.challenge or args.challenge.id ~= "c_jopo_joker_poker" then
-        return
-    end
 
     -- Must be blocking so that new jokers only generate after old ones are dissolved (and no longer "block")
     local blocking = not run_start
@@ -35,9 +53,13 @@ local function joker_poker_jokers(run_start)
         for k, v in ipairs(G.jokers.cards) do
             if v.edition and v.edition.negative then
                 negatives = negatives + 1
+                if current_mod.config.keep_negatives then
+                    goto continue
+                end
             end
             v:start_dissolve(nil, _first_dissolve)
             _first_dissolve = true
+            ::continue::
         end
         return true end } )
 
