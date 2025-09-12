@@ -22,6 +22,9 @@ SMODS.Challenge {
 --- Remove all current jokers, fill up joker slots with random jokers
 --- @param run_start any
 local function joker_poker_jokers(run_start)
+    if not args.challenge or args.challenge.id ~= "c_jopo_joker_poker" then
+        return
+    end
 
     -- Must be blocking so that new jokers only generate after old ones are dissolved (and no longer "block")
     local blocking = not run_start
@@ -69,10 +72,6 @@ function Game:start_run(args)
     game_start(self, args)
 
     if args.savetext then
-        return
-    end
-
-    if not args.challenge or args.challenge.id ~= "c_jopo_joker_poker" then
         return
     end
 
