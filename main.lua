@@ -94,6 +94,9 @@ local game_start = Game.start_run
 
 function Game:start_run(args)
     game_start(self, args)
+	
+	if args.savetext then return end
+	
     joker_poker_jokers(true)
 end
 
