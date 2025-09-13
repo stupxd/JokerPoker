@@ -43,6 +43,8 @@ end
 --- Remove all current jokers, fill up joker slots with random jokers
 --- @param run_start any
 local function joker_poker_jokers(run_start)
+	-- If our challenge variable has not been specifically set, don't do anything.
+	if not (G.GAME.modifiers.jopo_joker_poker and G.GAME.modifiers.jopo_joker_poker == 69) then return end
 
     -- Must be blocking so that new jokers only generate after old ones are dissolved (and no longer "block")
     local blocking = not run_start
@@ -92,15 +94,9 @@ local game_start = Game.start_run
 
 function Game:start_run(args)
     game_start(self, args)
-
-    if args.savetext then
-        return
-    end
-
-    if not args.challenge or args.challenge.id ~= "c_jopo_joker_poker" then
-        return
-    end
-
+	
+	if args.savetext then return end
+	
     joker_poker_jokers(true)
 end
 
@@ -109,11 +105,6 @@ local round_end = G.FUNCS.cash_out
 
 G.FUNCS.cash_out = function(e)
     round_end(e)
-
-    if G.GAME.challenge ~= "c_jopo_joker_poker" then
-        return
-    end
-
     joker_poker_jokers(false)
 end
 
